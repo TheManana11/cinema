@@ -3,6 +3,7 @@
 require("../models/User.php");
 
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *')
 
 $all_users = [];
 $response = [];
