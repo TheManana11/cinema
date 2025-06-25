@@ -1,0 +1,17 @@
+.header{
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+}
+
+.links{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+a{
+    color: white;
+}

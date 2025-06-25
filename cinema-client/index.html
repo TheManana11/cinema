@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema</title>
+</head>
+<body>
+    <header id="header"></header>
+
+    <h1>This is main page</h1>
+
+    <footer id="footer"></footer>
+
+
+    <script>
+        fetch("./components/header.html").then(res => res.text()).then(data => document.getElementById('header').innerHTML = data);
+        fetch("./components/footer.html").then(res => res.text()).then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+</body>
+</html>
