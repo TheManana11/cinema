@@ -1,47 +1,47 @@
 <?php
 
-require("../connection/connection.php");
+require("Model.php");
 
-class User
-{
-    private $connection;
+class User extends Model{
 
-    function __construct()
-    {
-        global $conn;
-        $this->connection = $conn;
+    private string $id;
+    private string $first_name;
+    private string $last_name;
+    private string $email;
+    private string $phone_number;
+    private string $password;
+    private string $user_type;
+
+    protected static string $table = "users";
+
+    public function __construct(array $data){
+        $this->id = $data["id"];
+        $this->first_name = $data["first_name"];
+        $this->last_name = $data["last_name"];
+        $this->email = $data["email"];
+        $this->phone_number = $data["phone_number"];
+        $this->password = $data["password"];
+        $this->user_type = $data["user_type"];
     }
 
-    function getAllUsers()
-    {
-        $users = [];
-        $sql_query = "SELECT id, first_name, last_name, email, phone_number, user_type FROM users";
+    public function getPassword(){
+        return $this->password;
+    }
 
-        $stmt = $this->connection->prepare($sql_query);
-        if ($stmt->execute()) {;
-            $result = $stmt->get_result();
+    public function toArray(){
+        return [$this->id, $this->first_name, $this->last_name, $this->email, $this->phone_number, $this->user_type];
+    }
 
-            while ($record = $result->fetch_assoc()) {
-                array_push($users, $record);
-            }
-            $stmt->close();
-            return $users;
-        } else {
-            return false;
+    public static function login(mysqli $mysqli, string $email){
+        $sql = "SELECT * FROM users WHERE email=?";
+        $query = $mysqli->prepare($sql);
+        $query->bind_param("s", $email);
+        if($query->execute()){
+            $data = $query->get_result()->fetch_assoc();
+            return $data ? new User($data) : null;
+        }else{
+            return null;
         }
     }
 
-    function addUser($first_name, $last_name, $email, $phone_number, $password)
-    {
-        $sql_query = "INSERT INTO users (first_name, last_name, email, phone_number, password) VALUES(?,?,?,?,?)";
-        $stmt = $this->connection->prepare($sql_query);
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $stmt->bind_param("sssss", $first_name, $last_name, $email, $phone_number, $hashed_password);
-        if ($stmt->execute()) {
-            return true;
-            $stmt->close();
-        } else {
-            return false;
-        }
-    }
 }
