@@ -1,17 +1,27 @@
-// const form = document.getElementById("form-submit");
+const form = document.getElementById("form-submit");
 
-// form.addEventListener("submit", async (e) => {
-//     e.preventDefault();
 
-//     const data = {
-//         first_name: form.element["first_name"].value,
-//         last_name: form.element["last_name"].value,
-//         email: form.element["email"].value,
-//         phone_number: form.element["phone_number"].value,
-//         password: form.element["password"].value,
-//     };
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-//     const response = await axios.post("http://localhost/cinema/cinema-server/controllers/add_user_api.php", data, { headers: "Content-Type: application/json" });
+    const data = {
+        first_name: form.elements["first_name"].value,
+        last_name: form.elements["last_name"].value,
+        email: form.elements["email"].value,
+        phone_number: form.elements["phone_number"].value,
+        password: form.elements["password"].value,
+    };
 
-// console.log(response);
-// })
+    const response = await axios.post("http://localhost/cinema/cinema-server/controllers/add_user_api.php", data, { headers: "Content-Type: application/json" });
+
+    if(response){
+        const id = response.data.user[0];
+        localStorage.setItem("user_id", id);
+        window.location.href = "../index.html";
+        alert(response?.data?.Message);
+        return;
+    }else{
+        console.log(response);
+        alert(response?.data?.Message);
+    }
+})
