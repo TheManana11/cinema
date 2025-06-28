@@ -10,6 +10,8 @@ class Movie extends Model{
     private string $rating;
     private string $release_date;
     private string $image;
+    private string $duration;
+    private string $language;
 
 
     protected static string $table = "movies";
@@ -19,5 +21,9 @@ class Movie extends Model{
         foreach($data as $key => $value){
             $this->$key = $value;
         }
+    }
+
+    public function toArray(){
+        return ["id" => $this->id, "name" => $this->name, "description" => $this->description, "price" => $this->price, "rating" => $this->rating, "release_date" => $this->release_date, "image" => $this->image, "duration" => $this->duration, "language" => $this->language];
     }
 }

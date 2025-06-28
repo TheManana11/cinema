@@ -2,7 +2,7 @@
 
 require("../connection/connection.php");
 
-$sql = "ALTER TABLE movies ADD image VARCHAR(255) NOT NULL";
+$sql = "ALTER TABLE movies ADD duration TIME, ADD language VARCHAR(255)";
 
 $query = $conn->prepare($sql);
 $query->execute();
