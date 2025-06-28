@@ -33,7 +33,7 @@ class User extends Model{
     }
 
     public function toArray(){
-        return [$this->id, $this->first_name, $this->last_name, $this->email, $this->phone_number, $this->user_type];
+        return ["id" => $this->id, "first_name" => $this->first_name, "last_name" => $this->last_name, "email" => $this->email, "phone_number" => $this->phone_number, "user_type" => $this->user_type];
     }
 
     public static function login(mysqli $mysqli, string $email){

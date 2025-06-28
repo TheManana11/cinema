@@ -1,5 +1,6 @@
 <?php
 
+require("../middleware/cors.php");
 require("../connection/connection.php");
 require("../models/User.php");
 

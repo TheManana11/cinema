@@ -7,7 +7,7 @@ class Model
     protected static string $primary_key = "id";
 
 
-    // getting a single record based on d from a table
+    // getting a single record based on id from a table
     public static function find(mysqli $mysqli, int $id)
     {
         $sql = sprintf("SELECT * FROM %s WHERE %s= ?", static::$table, static::$primary_key);
