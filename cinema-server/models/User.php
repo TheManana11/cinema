@@ -4,7 +4,7 @@ require("Model.php");
 
 class User extends Model{
 
-    private string $id;
+    protected string $id;
     private string $first_name;
     private string $last_name;
     private string $email;
@@ -22,6 +22,10 @@ class User extends Model{
         $this->phone_number = $data["phone_number"];
         $this->password = $data["password"];
         $this->user_type = $data["user_type"];
+    }
+
+    public function getID(){
+        return $this->id;
     }
 
     public function getPassword(){

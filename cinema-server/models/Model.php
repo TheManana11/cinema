@@ -1,8 +1,11 @@
 <?php
 
+use function PHPSTORM_META\map;
+
 class Model{
 
     protected static string $table;
+    protected string $id;
     protected static string $primary_key = "id";
     
 
@@ -63,6 +66,46 @@ class Model{
             $user_id = $mysqli->insert_id; // getting the last element's in the database which is created now
             $user = static::find($mysqli, $user_id); // getting the created user
             return $user;
+        }else{
+            return null;
+        }
+    }
+
+    // updating an existing user
+    public function update(mysqli $mysqli, array $data){
+
+        $id = $data["id"];
+        array_shift($data);
+
+        $keys = array_keys($data);
+        $values = array_values($data);
+
+        $stmt_arr = [];
+        foreach($keys as $key){
+            array_push($stmt_arr, "{$key}=?");
+        }
+
+        $stmt_str = implode(", ", $stmt_arr);  // make the array as a string like "first_name=?, last_name=? ....."
+
+
+        $sql = sprintf("UPDATE %s SET %s WHERE %s=?", static::$table, $stmt_str, static::$primary_key);
+        $query = $mysqli->prepare($sql);
+
+       
+        $binding = "";
+        for($i = 0; $i < count($values); $i++){
+            if(is_string($values[$i])) $binding .= "s";
+            elseif(is_int($values[$i])) $binding .= "i";
+            elseif(is_double($values[$i])) $binding .= "d";
+            else $binding .= "b";
+        }
+        array_push($values, $id);  // these 2 lines is for adding the binding of the id
+        $binding .= "i";
+        $query->bind_param($binding, ...$values);
+        
+        if($query->execute()){
+            $user = static::find($mysqli, $id);
+            return $user ? $user : null;
         }else{
             return null;
         }
