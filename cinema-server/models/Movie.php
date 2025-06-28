@@ -9,6 +9,8 @@ class Movie extends Model{
     private float $price;
     private string $rating;
     private string $release_date;
+    private string $image;
+
 
     protected static string $table = "movies";
 
