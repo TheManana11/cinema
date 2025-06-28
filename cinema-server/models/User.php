@@ -4,7 +4,7 @@ require("Model.php");
 
 class User extends Model{
 
-    protected string $id;
+    private string $id;
     private string $first_name;
     private string $last_name;
     private string $email;

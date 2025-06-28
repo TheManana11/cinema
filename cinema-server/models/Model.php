@@ -4,7 +4,6 @@ class Model
 {
 
     protected static string $table;
-    protected string $id;
     protected static string $primary_key = "id";
 
 
