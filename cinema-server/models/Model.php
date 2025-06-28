@@ -1,47 +1,49 @@
 <?php
 
-use function PHPSTORM_META\map;
-
-class Model{
+class Model
+{
 
     protected static string $table;
     protected string $id;
     protected static string $primary_key = "id";
-    
 
-    // getting a single record based on d=id from a table
-    public static function find(mysqli $mysqli, int $id){
+
+    // getting a single record based on d from a table
+    public static function find(mysqli $mysqli, int $id)
+    {
         $sql = sprintf("SELECT * FROM %s WHERE %s= ?", static::$table, static::$primary_key);
         $query = $mysqli->prepare($sql);
         $query->bind_param("i", $id);
-        if($query->execute()){
+        if ($query->execute()) {
             $data = $query->get_result()->fetch_assoc();
             return $data ? new static($data) : null;
-        }else{
+        } else {
             return null;
         }
     }
 
 
     // getting all records from a table
-    public static function all(mysqli $mysqli){
+    public static function all(mysqli $mysqli)
+    {
         $sql = sprintf("SELECT * FROM %s", static::$table);
         $query = $mysqli->prepare($sql);
-        if($query->execute()){
+        if ($query->execute()) {
             $result = $query->get_result();
             $data = [];
-            while($row = $result->fetch_assoc()){
+            while ($row = $result->fetch_assoc()) {
                 $data[] = new static($row);
             }
             return $data;
-        }else{
+        } else {
             return null;
         }
     }
 
 
     // creating dynamic class
-    public static function create(mysqli $mysqli, array $data){
+    public static function create(mysqli $mysqli, array $data)
+    {
         $keys = array_keys($data);  // this will return an array of the keys
         $attributes = implode(', ', $keys);  // this will make the array values as a string separated with comma
 
@@ -53,26 +55,27 @@ class Model{
 
         $values = array_values($data);
         $binding = "";
-        for($i = 0; $i < count($values); $i++){
-            if(is_string($values[$i])) $binding .= "s";
-            elseif(is_int($values[$i])) $binding .= "i";
-            elseif(is_double($values[$i])) $binding .= "d";
+        for ($i = 0; $i < count($values); $i++) {
+            if (is_string($values[$i])) $binding .= "s";
+            elseif (is_int($values[$i])) $binding .= "i";
+            elseif (is_double($values[$i])) $binding .= "d";
             else $binding .= "b";
         }
 
         $query->bind_param($binding, ...$values);
 
-        if($query->execute()){
+        if ($query->execute()) {
             $user_id = $mysqli->insert_id; // getting the last element's in the database which is created now
             $user = static::find($mysqli, $user_id); // getting the created user
             return $user;
-        }else{
+        } else {
             return null;
         }
     }
 
-    // updating an existing user
-    public function update(mysqli $mysqli, array $data){
+    // updating an existing record
+    public function update(mysqli $mysqli, array $data)
+    {
 
         $id = $data["id"];
         array_shift($data);
@@ -81,7 +84,7 @@ class Model{
         $values = array_values($data);
 
         $stmt_arr = [];
-        foreach($keys as $key){
+        foreach ($keys as $key) {
             array_push($stmt_arr, "{$key}=?");
         }
 
@@ -91,23 +94,31 @@ class Model{
         $sql = sprintf("UPDATE %s SET %s WHERE %s=?", static::$table, $stmt_str, static::$primary_key);
         $query = $mysqli->prepare($sql);
 
-       
+
         $binding = "";
-        for($i = 0; $i < count($values); $i++){
-            if(is_string($values[$i])) $binding .= "s";
-            elseif(is_int($values[$i])) $binding .= "i";
-            elseif(is_double($values[$i])) $binding .= "d";
+        for ($i = 0; $i < count($values); $i++) {
+            if (is_string($values[$i])) $binding .= "s";
+            elseif (is_int($values[$i])) $binding .= "i";
+            elseif (is_double($values[$i])) $binding .= "d";
             else $binding .= "b";
         }
         array_push($values, $id);  // these 2 lines is for adding the binding of the id
         $binding .= "i";
         $query->bind_param($binding, ...$values);
-        
-        if($query->execute()){
+
+        if ($query->execute()) {
             $user = static::find($mysqli, $id);
             return $user ? $user : null;
-        }else{
+        } else {
             return null;
         }
+    }
+
+    // deleting a record from database
+    public function delete(mysqli $mysqli, int $id) {
+        $sql = sprintf("DELETE FROM %s WHERE %s= ?", static::$table, static::$primary_key);
+        $query = $mysqli->prepare($sql);
+        $query->bind_param("i", $id);
+        return $query->execute() ? true : null;
     }
 }
