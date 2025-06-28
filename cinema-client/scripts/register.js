@@ -15,7 +15,7 @@ form.addEventListener("submit", async (e) => {
     const response = await axios.post("http://localhost/cinema/cinema-server/controllers/add_user_api.php", data, { headers: "Content-Type: application/json" });
 
     if(response){
-        const id = response.data.user[0];
+        const id = response.data.user["id"];
         localStorage.setItem("user_id", id);
         window.location.href = "../index.html";
         alert(response?.data?.Message);
