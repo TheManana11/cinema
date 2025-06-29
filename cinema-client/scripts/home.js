@@ -31,3 +31,41 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("admin-dashboard").classList.add("display");
   }
 });
+
+
+async function get_movies(){
+  try {
+    const response = await axios.get("http://localhost/cinema/cinema-server/controllers/get_movies_api.php");
+    const movies = response.data.movies;
+
+    const moviesDiv = document.querySelector(".movies-container");
+    moviesDiv.innerHTML = "";
+    
+    movies.map(movie => {
+      const movieDiv = document.createElement("div");
+      movieDiv.classList.add("movie-item");
+
+      movieDiv.innerHTML = `
+         <a href="../pages/movie-details.html?id=${movie.id}">
+        <img src="${movie.image}" alt="${movie.name}" class="movie-item-poster" />
+        <div class="movie-item-content">
+          <h3>${movie.name}</h3>
+          <div class="date-rating">
+          <p>${movie.release_date}</p>
+          <p>⭐${movie.rating}</p>
+          </div>
+        </div>
+        </a>
+      `;
+
+      moviesDiv.appendChild(movieDiv);
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async()=>{
+  await get_movies();
+})

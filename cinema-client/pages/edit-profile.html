@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/edit-profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <a href="../index.html"><h1>Smart Cinema</h1></a>
+      <h2 id="welcome"></h2>
+    </header>
+
+    <form class="profile-details" id="edit-user-form">
+      <div class="inputs">
+        <div class="profile-detail">
+        <h3>First Name:</h3>
+        <input type="text" name="first_name" id="fname" value="">
+      </div>
+      <div class="profile-detail">
+        <h3>Last Name:</h3>
+        <input type="text" name="last_name" id="lname" value="">
+      </div>
+      <div class="profile-detail">
+        <h3>Email:</h3>
+        <input type="text" name="email" id="email" value="">
+      </div>
+      <div class="profile-detail">
+        <h3>Phone Number:</h3>
+       <input type="text" name="phone_number" id="phn-number" value="">
+      </div>
+      <div class="profile-detail">
+        <h3>New Password:</h3>
+       <input type="password" name="password">
+      </div>
+      </div>
+      <input class="edit-btn" type="submit" value="edit">
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../scripts/user-edit.js"></script>
+  </body>
+</html>

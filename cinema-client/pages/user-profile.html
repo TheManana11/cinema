@@ -3,9 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/user-profile.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <title>Document</title>
 </head>
 <body>
-    <h1>User Profile</h1>
+    <header>
+        <a href="../index.html"><h1>Smart Cinema</h1></a>
+        <h2 id="welcome"></h2>
+    </header>
+
+    <div class="profile-content">
+
+        <div class="side-bar">
+            <a href="edit-profile.html"> <i class="fa fa-edit"></i>Edit Profile</a>
+        </div>
+    
+        <div class="profile-details">
+            <div class="profile-detail">
+                <h3>First Name: </h3>
+                <p id="fname"></p>
+            </div>
+            <div class="profile-detail">
+                <h3>Last Name: </h3>
+                <p id="lname"></p>
+            </div>
+            <div class="profile-detail">
+                <h3>Email: </h3>
+                <p id="email"></p>
+            </div>
+            <div class="profile-detail">
+                <h3>Phone Number: </h3>
+                <p id="phn-number"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../scripts/user-profile.js"></script>
 </body>
 </html>
