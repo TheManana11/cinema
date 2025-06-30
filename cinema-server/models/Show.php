@@ -23,7 +23,7 @@ class Show extends Model{
     }
 
     public static function movieShows(mysqli $mysqli, int $id){
-        $sql = "SELECT * FROM shows WHERE movie_id=?";
+        $sql = "SELECT * FROM shows WHERE movie_id=? ORDER BY start_time ASC";
 
         $query = $mysqli->prepare($sql);
         $query->bind_param("i", $id);
