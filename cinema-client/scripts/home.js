@@ -32,16 +32,54 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
-async function get_movies(){
+async function get_movies() {
   try {
-    const response = await axios.get("http://localhost/cinema/cinema-server/controllers/get_movies_api.php");
+    const response = await axios.get(
+      "http://localhost/cinema/cinema-server/controllers/get_movies_api.php"
+    );
     const movies = response.data.movies;
+
+    const swiperWrapper = document.querySelector(".swiper-wrapper");
+
+
+    movies.map(movie => {
+        swiperWrapper.innerHTML += `
+        <div class="swiper-slide">
+          <div class="hero-content">
+            <div class="title">
+              <h1>${movie.name}</h1>
+              <div class="date-time">
+                <p>⭐${movie.rating}</p>
+                <div class="vertical-line"></div>
+                <p>${movie.release_date}</p>
+                <div class="vertical-line"></div>
+                <p>${movie.duration}</p>
+                <div class="vertical-line"></div>
+                <p>${movie.genre}</p>
+              </div>
+            </div>
+            <p>${movie.description}</p>
+            <a href="./pages/movie-details.html?id=${movie.id}"
+              ><button class="hero-btn">View Details</button></a
+            >
+          </div>
+          <img src=${movie.image} alt="hero image" />
+        </div>`;
+    });
+
+    const swiper = new Swiper("#hero-container", {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+  });
+
 
     const moviesDiv = document.querySelector(".movies-container");
     moviesDiv.innerHTML = "";
-    
-    movies.map(movie => {
+
+    movies.map((movie) => {
       const movieDiv = document.createElement("div");
       movieDiv.classList.add("movie-item");
 
@@ -50,6 +88,7 @@ async function get_movies(){
         <img src="${movie.image}" alt="${movie.name}" class="movie-item-poster" />
         <div class="movie-item-content">
           <h3>${movie.name}</h3>
+          <h4>${movie.genre}</h4>
           <div class="date-rating">
           <p>${movie.release_date}</p>
           <p>⭐${movie.rating}</p>
@@ -60,12 +99,11 @@ async function get_movies(){
 
       moviesDiv.appendChild(movieDiv);
     });
-
   } catch (error) {
     console.log(error);
   }
 }
 
-document.addEventListener("DOMContentLoaded", async()=>{
+document.addEventListener("DOMContentLoaded", async () => {
   await get_movies();
-})
+});

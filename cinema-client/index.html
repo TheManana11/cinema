@@ -3,45 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/home.css">
-<link
+    <link rel="stylesheet" href="./styles/home.css" />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />    <title>Cinema</title>
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <title>Cinema</title>
   </head>
   <body>
     <!-- header -->
     <div class="header">
-        <h1>Smart Cinema</h1>
-        <div class="links">
-            <a href="">Home</a>
-            <div class="vertical-line"></div>
-            <a href="">About</a>
-            <div class="vertical-line"></div>
-            <a href="">Contact</a>
-        </div>
-        <a id="login-reg" href="../pages/login.html">Login/register</a>
-        <a id="user-profile" class="profile-dash" href="../pages/user-profile.html">  <i class="fas fa-user"></i> profile</a>
-        <a id="admin-dashboard" class="profile-dash" href="../pages/dashboard.html"> <i class="fas fa-chart-line"></i> dashboard</a>
+      <h1>Smart Cinema</h1>
+      <div class="links">
+        <a href="">Home</a>
+        <div class="vertical-line"></div>
+        <a href="">About</a>
+        <div class="vertical-line"></div>
+        <a href="">Contact</a>
+      </div>
+      <a id="login-reg" href="../pages/login.html">Login/register</a>
+      <a
+        id="user-profile"
+        class="profile-dash"
+        href="../pages/user-profile.html"
+      >
+        <i class="fas fa-user"></i> profile</a
+      >
+      <a
+        id="admin-dashboard"
+        class="profile-dash"
+        href="../pages/dashboard.html"
+      >
+        <i class="fas fa-chart-line"></i> dashboard</a
+      >
     </div>
 
+    <!-- hero section -->
+    <div id="hero-container" class="hero swiper">
+      <div class="swiper-wrapper">
+        
+      </div>
+    </div>
 
     <!-- body -->
-     <div class="movies-container">
-
-     </div>
-
-
-
+    <div class="movies-container"></div>
 
     <!-- footer -->
     <div class="footer">
-        <h1>Smart Cinema</h1>
-        <hr>
-        <p>All rights reserved</p>
+      <h1>Smart Cinema</h1>
+      <hr />
+      <p>All rights reserved</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./scripts/home.js"></script>
+
   </body>
 </html>

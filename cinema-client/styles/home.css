@@ -38,7 +38,59 @@
 
 
 
-/* body */
+/* hero section */
+
+.swiper-slide{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+    background-color: #191919;
+    border-bottom: 5px solid red;
+    padding: 1rem 0;
+    color: white;
+}
+
+.swiper-slide > img{
+    height: 80vh;
+    width: 40vw;
+    box-shadow: -10px 0 20px -5px rgb(58, 3, 3)
+}
+
+.hero-content{
+    display: flex;
+    flex-direction: column;
+    max-width: 30vw;
+    gap: 2rem;
+}
+.title > h1{
+    font-size: 5rem;
+    color: whitesmoke;
+}
+
+.hero-btn{ 
+    padding: 1rem 0.7rem;
+    background-color: #191919;
+    color: red;
+    border: 2px solid red;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color ease-in-out 0.5s;
+}
+
+.hero-btn:hover{ 
+    background-color: white;
+}
+
+.date-time{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+
+/* movies */
 .movies-container{
     background-color: #191919;
     display: grid;

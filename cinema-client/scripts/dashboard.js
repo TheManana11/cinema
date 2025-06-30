@@ -57,6 +57,7 @@ form.addEventListener("submit", async (e) => {
         image: base64Image,
         duration: form.elements["duration"].value,
         language: form.elements["language"].value,
+        genre: form.elements["genre"].value,
       };
     
       try {

@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <div class="movie-details-content"> 
         <h1>${movie.name}</h1>
         <p><strong>Description:</strong> ${movie.description}</p>
+        <p><strong>Genre:</strong> ${movie.genre}</p>
         <p><strong>Release Date:</strong> ${movie.release_date}</p>
         <p><strong>Duration:</strong> ${movie.duration}</p>
         <p><strong>Language:</strong> ${movie.language}</p>
