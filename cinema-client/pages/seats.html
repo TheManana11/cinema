@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/seats.css">
+    <title>Document</title>
+  </head>
+  <body>
+
+    <div class="seats">
+      <h1>Seats:</h1>
+      <div class="description">
+        <div>
+          <div class="empty"></div> <p>Empty Seat</p>
+        </div>
+        <div>
+          <div class="booked"></div> <p>Booked Seat</p>
+        </div>
+      </div>
+      <div class="screen">Screen</div>
+      <form action="./booking.html" id="seats-form">
+        <div class="checkboxes" id="checkboxes">
+
+        </div>
+        <input type="submit" value="Book">
+      </form>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../scripts/seats.js"></script>
+  </body>
+</html>

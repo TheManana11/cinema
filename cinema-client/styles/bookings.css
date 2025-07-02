@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    font-size: 16px;
+}
+
+h1{
+    color: red;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    background-color: #191919;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.bookings{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.booking{
+    border: 2px solid red;
+    border-radius: 15px;
+    padding: 1rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.href{
+    display: flex;
+    gap: 1rem;
+}
+
+a{
+    text-decoration: none;
+    color: red;
+    background-color: white;
+    border: 2px solid red;
+    border-radius: 15px;
+    padding: 1rem;
+}
+
+
+@media (max-width: 1000px) {
+    :root{
+        font-size: 14px;
+    }
+    .bookings{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+}
+
+
+@media (max-width: 768px) {
+    :root{
+        font-size: 12px;
+    }
+    .bookings{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+}
+
+
+@media (max-width: 500px) {
+    :root{
+        font-size: 10px;
+    }
+    .bookings{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+}
+}

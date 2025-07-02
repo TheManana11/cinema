@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/movie-details.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="movie-details" id="movie-details"></div>
+
+    <div id="admin-shows" class="admin-import-shows">
+      <h1>Import Shows for this movie:</h1>
+      <form action="post" id="shows-form">
+        <div>
+        <label for="start_time">Movie Date and Time: </label>
+        <input type="datetime-local" name="start_time" />
+        </div>
+        <div>
+        <label for="start_time">Hall Number: </label>
+        <input type="number" name="hall" />
+        </div>  
+        <input type="submit" value="submit" class="shows-form-btn">
+      </form>
+    </div>
+
+
+    <div id="shows" class="shows">
+      <h1>Show times for this movie:</h1>
+      <div id="shows-btns" class="shows-btn">
+
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../scripts/movie-details.js"></script>
+  </body>
+</html>

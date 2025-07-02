@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+:root{
+    font-size: 16px;
+}
+
+body{
+    background-image: url("../assets/login_background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    justify-content: center;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 10px;
+    max-width: 60%;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.full-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
+
+.input-div{
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+
+.input-div-content{
+ font-size: 1.5rem;
+    display: flex;
+    gap: 0.5em;
+}
+
+.input-div > span{
+ color: red;
+}
+
+.input-div-content > input {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    outline: none;
+}
+
+.form > button{
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    max-width: fit-content;
+    font-size: 1.3rem;
+    padding: 0.3em 1em;
+    transition: all ease-in-out 0.5s;
+}
+.form > button:hover{
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+}
+
+.membership{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+@media (max-width: 1000px) {
+    :root{
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    :root{
+        font-size: 12px;
+    }
+}
+

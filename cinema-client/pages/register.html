@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/login_register.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Register Form</h1>
+      <form id="form-submit" class="form">
+        <div class="full-name">
+          <div class="input-div">
+            <div class="input-div-content">
+              <i class="fas fa-user"></i>
+              <input type="text" name="first_name" placeholder="First Name" />
+            </div>
+            <span id="first-name-span"></span>
+          </div>
+          <div class="input-div">
+            <div class="input-div-content">
+              <i class="fas fa-user"></i>
+              <input type="text" name="last_name" placeholder="Last Name" />
+            </div>
+
+            <span id="last-name-span"></span>
+          </div>
+        </div>
+        <div class="full-name">
+          <div class="input-div">
+            <div class="input-div-content">
+              <i class="fas fa-envelope"></i>
+              <input type="text" name="email" placeholder="Email" />
+            </div>
+
+            <span id="email-span"></span>
+          </div>
+          <div class="input-div">
+            <div class="input-div-content">
+              <i class="fas fa-phone"></i>
+              <input
+                type="text"
+                name="phone_number"
+                placeholder="Phone Number"
+              />
+            </div>
+
+            <span id="phone-number-span"></span>
+          </div>
+        </div>
+        <div class="input-div">
+          <div class="input-div-content">
+            <i class="fas fa-lock"></i>
+            <input type="password" name="password" placeholder="Password" />
+          </div>
+
+          <span id="password-span"></span>
+        </div>
+        <button type="submit">Register</button>
+      </form>
+      <div class="membership">
+        <p>Already a member?</p>
+        <a href="./login.html">Login</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../scripts/register.js"></script>
+  </body>
+</html>
