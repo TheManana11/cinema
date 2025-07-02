@@ -45,6 +45,8 @@ header > a{
     align-items: center;
     gap: 0.3rem;
     color: white;
+    margin-bottom: 2rem;
+    text-decoration: none;
 }
 
 .profile-details{

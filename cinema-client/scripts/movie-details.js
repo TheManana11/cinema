@@ -55,19 +55,32 @@ document.addEventListener("DOMContentLoaded", async () => {
       hall: form.elements["hall"].value,
     };
 
+
+    let seats_response = {};
+    let show_response = {};
+
     try {
-      const show_response = await axios.post(
+      show_response = await axios.post(
         "http://localhost/cinema/cinema-server/controllers/add_show_api.php",
         show_data,
         {
           headers: { "Content-Type": "application/json" },
         }
+      );      
+
+      const show_id = show_response.data.show.id;
+      seats_response = await axios.post(
+        "http://localhost/cinema/cinema-server/controllers/add_all_seats_api.php",
+        show_id,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
       );
 
-      alert(show_response.data.Message);
+      alert(show_response.data.Message , seats_response.data.Message);
     } catch (error) {
       console.log(error);
-      alert(show_response.data.Message);
+      alert(show_response.data.Message , seats_response.data.Message);
     }
   });
 
@@ -75,12 +88,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const get_shows_response = await axios.get(`http://localhost/cinema/cinema-server/controllers/get_movie_shows_api.php?movie_id=${movie_id}`);
 
     const shows = get_shows_response.data.shows;
-    console.log(shows)
 
     const btns = document.getElementById("shows-btns");
 
     shows.map(show => {
-      btns.innerHTML += `<a href="./seats.html?show_id=${show.id}"><button>${show.start_time} | Hall number: ${show.hall}</button></a>`
+      btns.innerHTML += `<a href="./seats.html?show_id=${show.id}&movie_id=${movie_id}"><button>${show.start_time} | Hall number: ${show.hall}</button></a>`
     })
   } catch (error) {
     console.log(error);

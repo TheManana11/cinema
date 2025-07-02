@@ -24,12 +24,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (id) {
+
     getUser();
   } else {
     document.getElementById("login-reg").classList.remove("display");
     document.getElementById("user-profile").classList.add("display");
     document.getElementById("admin-dashboard").classList.add("display");
   }
+
+  const logout = document.getElementById("logout");
+  if(!id){
+    logout.classList.add("display");
+  }
+
+  logout.addEventListener("click", ()=>{
+    localStorage.removeItem("user_id");
+    location.reload();
+  })
 });
 
 async function get_movies() {

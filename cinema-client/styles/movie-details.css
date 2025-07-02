@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
 }
+:root{
+    font-size: 16px;
+}
+
 
 body{
     background-color: #191919;
@@ -11,7 +15,6 @@ body{
 
 .movie-details{
     background-color: #191919;
-    /* height: 100dvh; */
     display: flex;
     padding-top: 3rem;
     justify-content: center;
@@ -19,8 +22,8 @@ body{
 }
 
 .movie-details-poster{
-    width: auto;
-    height: 70vh;
+    width: 60vh;
+    height: 60vh;
 }
 
 .movie-details-content{
@@ -109,4 +112,86 @@ body{
     background-color: white;
     border: 4px solid red;
     color: black;
+}
+
+
+
+
+
+
+@media (max-width: 1000px) {
+:root{
+    font-size: 14px;
+}
+
+
+.movie-details{
+    flex-direction: column;
+    align-items: start;
+    padding-top: 0.2rem
+}
+
+.movie-details-poster{
+    width: 100vw;
+    height: auto;
+}
+
+.movie-details-content{
+    max-width: 100vw;
+    padding: 0 1rem;
+}
+
+.movie-details-content > h1, .movie-details-content > p >strong {
+    color: red;
+}
+
+.admin-import-shows{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem 0;
+    color: white;
+    gap: 2rem;
+}
+
+.admin-import-shows > h1{
+    color: red;
+}
+
+.admin-import-shows > form{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.admin-import-shows > form > div > input{
+    padding: 0.2rem;
+}
+.admin-import-shows > form > div > label{
+    font-weight: bold;
+    color: red;
+}
+
+.shows-form-btn{
+    max-width: fit-content;
+    padding: 0.2rem 2rem;
+    background-color: #191919;
+    color: red;
+    border: 2px solid red;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.display{
+    display: none;
+}
+
+.shows{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+
 }
