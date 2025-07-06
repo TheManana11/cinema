@@ -8,16 +8,16 @@ form.addEventListener("submit", async (e) => {
         password: form.elements["password"].value
     };
     
-    const response = await axios.post("http://localhost/cinema/cinema-server/controllers/login_user_api.php", data, {headers: {"Content-Type": "application/json"}});
+    const response = await axios.post("http://localhost/cinema/cinema-server/login", data, {headers: {"Content-Type": "application/json"}});
 
     if(response){
-        const id = response.data.user["id"];
+        const id = response.data.data["id"];
         localStorage.setItem("user_id", id);
         window.location.href = "../index.html";
-        alert(response.data.Message);
+        alert(response?.data?.message);
         return;
     }else{
-        alert(response?.data?.Message);
+        alert(response?.data?.message);
         return;
     }
 })

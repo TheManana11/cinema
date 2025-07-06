@@ -7,9 +7,9 @@ if(!id){
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const user_response = await axios.get(`http://localhost/cinema/cinema-server/controllers/get_users_api.php?id=${id}`)
+  const user_response = await axios.get(`http://localhost/cinema/cinema-server/users?id=${id}`)
 
-  if(user_response.data.user.user_type === "user"){
+  if(user_response.data.data.user_type === "user"){
     document.getElementById("admin-shows").classList.add("display");
   }
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const response = await axios.get(
-      `http://localhost/cinema/cinema-server/controllers/get_movies_api.php?id=${movie_id}`
+      `http://localhost/cinema/cinema-server/movies?id=${movie_id}`
     );
     const movie = response.data.movie;
 
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
       show_response = await axios.post(
-        "http://localhost/cinema/cinema-server/controllers/add_show_api.php",
+        "http://localhost/cinema/cinema-server/add_show",
         show_data,
         {
           headers: { "Content-Type": "application/json" },
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const show_id = show_response.data.show.id;
       seats_response = await axios.post(
-        "http://localhost/cinema/cinema-server/controllers/add_all_seats_api.php",
+        "http://localhost/cinema/cinema-server/add_seats",
         show_id,
         {
           headers: { "Content-Type": "application/json" },
@@ -85,8 +85,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   try {
-    const get_shows_response = await axios.get(`http://localhost/cinema/cinema-server/controllers/get_movie_shows_api.php?movie_id=${movie_id}`);
+    const get_shows_response = await axios.get(`http://localhost/cinema/cinema-server/movie_shows?movie_id=${movie_id}`);
 
+    console.log(get_shows_response);
     const shows = get_shows_response.data.shows;
 
     const btns = document.getElementById("shows-btns");

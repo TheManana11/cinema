@@ -3,10 +3,10 @@ const id = localStorage.getItem("user_id");
 async function getUser() {
   if (id) {
     const response = await axios.get(
-      `http://localhost/cinema/cinema-server/controllers/get_users_api.php?id=${id}`
+      `http://localhost/cinema/cinema-server/users?id=${id}`
     );
 
-    const user = response.data.user;
+    const user = response.data.data;
     if (!user || user.user_type !== "admin") {
       alert("You are not allowed to access this page");
       window.location.href = "../pages/login.html";
@@ -62,7 +62,7 @@ form.addEventListener("submit", async (e) => {
     
       try {
         const response = await axios.post(
-          "http://localhost/cinema/cinema-server/controllers/add_movie_api.php",
+          "http://localhost/cinema/cinema-server/add_movie",
           data,
           { headers: { "Content-Type": "application/json" } }
         );

@@ -8,7 +8,7 @@ if (!id) {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    const response = await axios.get(`http://localhost/cinema/cinema-server/controllers/get_bookings_api.php?user_id=${id}`);
+    const response = await axios.get(`http://localhost/cinema/cinema-server/bookings?user_id=${id}`);
 
     const bookings = response.data.bookings;
 

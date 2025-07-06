@@ -6,11 +6,11 @@ if(!id){
 }
 
 async function getUser(){
-    const response = await axios.get(`http://localhost/cinema/cinema-server/controllers/get_users_api.php?id=${id}`, {
+    const response = await axios.get(`http://localhost/cinema/cinema-server/users?id=${id}`, {
         headers: { "Content-Type": "application/json" }
     });
 
-    const user = response.data.user;
+    const user = response.data.data;
     document.getElementById("welcome").innerHTML = `Welcome ${user.first_name}`;
 
     document.getElementById("fname").innerHTML = `${user.first_name}`;
