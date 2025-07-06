@@ -12,16 +12,18 @@ form.addEventListener("submit", async (e) => {
         password: form.elements["password"].value,
     };
 
-    const response = await axios.post("http://localhost/cinema/cinema-server/controllers/add_user_api.php", data, { headers: "Content-Type: application/json" });
+    const response = await axios.post("http://localhost/cinema/cinema-server/register", data, { headers: "Content-Type: application/json" });
 
+    console.log(response);
+    
     if(response){
-        const id = response.data.user["id"];
+        const id = response.data.data["id"];
         localStorage.setItem("user_id", id);
         window.location.href = "../index.html";
-        alert(response?.data?.Message);
+        alert(response?.data?.message);
         return;
     }else{
         console.log(response);
-        alert(response?.data?.Message);
+        alert(response?.data?.message);
     }
 })

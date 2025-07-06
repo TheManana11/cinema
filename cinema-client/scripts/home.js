@@ -3,14 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let user = {};
   async function getUser() {
     const response = await axios.get(
-      `http://localhost/cinema/cinema-server/controllers/get_users_api.php?id=${id}`,
+      `http://localhost/cinema/cinema-server/users?id=${id}`,
       {
         headers: {
           "Content-Type": "application/json",
         },
       }
     );
-    user = response.data.user;
+    user = response.data.data;
 
     if (user.user_type == "admin") {
       document.getElementById("login-reg").classList.add("display");
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 async function get_movies() {
   try {
     const response = await axios.get(
-      "http://localhost/cinema/cinema-server/controllers/get_movies_api.php"
+      "http://localhost/cinema/cinema-server/movies"
     );
     const movies = response.data.movies;
 
@@ -70,7 +70,7 @@ async function get_movies() {
               </div>
             </div>
             <p>${movie.description}</p>
-            <a href="./pages/movie-details.html?id=${movie.id}"
+            <a href="../cinema-client/pages/movie-details.html?id=${movie.id}"
               ><button class="hero-btn">View Details</button></a
             >
           </div>
@@ -95,7 +95,7 @@ async function get_movies() {
       movieDiv.classList.add("movie-item");
 
       movieDiv.innerHTML = `
-         <a href="../pages/movie-details.html?id=${movie.id}">
+         <a href="../cinema-client/pages/movie-details.html?id=${movie.id}">
         <img src="${movie.image}" alt="${movie.name}" class="movie-item-poster" />
         <div class="movie-item-content">
           <h3>${movie.name}</h3>

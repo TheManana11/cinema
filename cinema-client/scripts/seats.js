@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let show = {};
   try {
     const response = await axios.get(
-      `http://localhost/cinema/cinema-server/controllers/get_shows_api.php?id=${show_id}`
+      `http://localhost/cinema/cinema-server/shows?id=${show_id}`
     );
     console.log(response);
     show = response.data.Show;
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const response = {};
   try {
     const response = await axios.get(
-      `http://localhost/cinema/cinema-server/controllers/get_all_seats_api.php?show_id=${show_id}`
+      `http://localhost/cinema/cinema-server/seats?show_id=${show_id}`
     );
     seats = response.data.seats;
 
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     checkboxes.innerHTML = ``;
 
     seats.map((seat) => {
-      checkboxes.innerHTML += `<input type="checkbox" name="seats" value="${seat.id}" ${seat.is_booked ? "checked" : "" } ${seat.is_booked ? "disabled" : "" }/>`;
+      checkboxes.innerHTML += `<input type="checkbox" name="seats" value="${seat.id}"  ${seat.is_booked ? "disabled" : "" }/>`;
     });
 
 
@@ -50,13 +50,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       
 
       try {
-        const response = await axios.post("http://localhost/cinema/cinema-server/controllers/update_seats_api.php", seats_array, {
+        const response = await axios.post("http://localhost/cinema/cinema-server/update_seat", seats_array, {
           headers: { "Content-Type": "application/json" }
         });
         console.log(response);
 
         seats_array.map( async(seat) =>{
-          const booking_response = await axios.post("http://localhost/cinema/cinema-server/controllers/add_booking_api.php", {
+          const booking_response = await axios.post("http://localhost/cinema/cinema-server/add_booking", {
             user_id: id, movie_id, show_id, seat_id: seat}, {
           headers: { "Content-Type": "application/json" }
         });

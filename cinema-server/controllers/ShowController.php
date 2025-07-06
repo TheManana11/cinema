@@ -1,9 +1,9 @@
 <?php
 
-require(__DIR__ . "/../connection/connection.php");
+require(__DIR__ . "/BaseController.php");
 require(__DIR__ . "/../models/Show.php");
 
-class ShowController
+class ShowController extends BaseController
 {
 
     public static function getShows()

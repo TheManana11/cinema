@@ -1,9 +1,9 @@
 <?php
 
-require(__DIR__ . "/../connection/connection.php");
+require(__DIR__ . "/BaseController.php");
 require(__DIR__ . "/../models/Seat.php");
 
-class SeatController
+class SeatController extends BaseController
 {
 
     public static function getSeats()
@@ -24,16 +24,19 @@ class SeatController
                     $response = ["message" => "seat with Id {$id} is not available in database."];
                 }
             } else {
-                $seats = seat::all($conn);
-                if ($seats) {
-                    http_response_code(200);
-                    $response = ["message" => "All seats are fetched successfully", "seats" => []];
-                    foreach ($seats as $seat) {
-                        $response["seats"][] = $seat->toArray();
+                if (isset($_GET["show_id"])) {
+
+                    $seats = seat::get_all($conn, $_GET["show_id"]);
+                    if ($seats) {
+                        http_response_code(200);
+                        $response = ["message" => "All seats are fetched successfully", "seats" => []];
+                        foreach ($seats as $seat) {
+                            $response["seats"][] = $seat->toArray();
+                        }
+                    } else {
+                        http_response_code(404);
+                        $response = ["message" => "No seats in the database."];
                     }
-                } else {
-                    http_response_code(404);
-                    $response = ["message" => "No seats in the database."];
                 }
             }
             echo json_encode($response);
@@ -116,61 +119,24 @@ class SeatController
 
         $response = [];
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $data = json_decode(file_get_contents("php://input"), true);
-            $id = $data["id"];
-            if (!$data || !isset($id)) {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $data = json_decode(file_get_contents("php://input"), true);
+
+                $seat = Seat::update_all($conn, $data);
+                if (!$seat) {
+                    http_response_code(404);
+                    $response = ["Message" => "seats not found."];
+                } else {
+                    http_response_code(200);
+                    $response = ["Message" => "seats updated successfully."];
+                }
+            } else {
                 http_response_code(400);
-                $response = ["Message" => "Bad Request, ID is required"];
+                $response = ["Message" => "Bad Request, Wrong URL"];
             }
 
-            $seat = Seat::find($conn, $id);
-            if (!$seat) {
-                http_response_code(404);
-                $response = ["Message" => "seat not found."];
-            }
-
-            $updated_seat = $seat->update($conn, $data);
-            if ($updated_seat) {
-                http_response_code(200);
-                $response = ["Message" => "seat Updated Successfully.", "updated_seat" => $updated_seat->toArray()];
-            } else {
-                http_response_code(500);
-                $response = ["Message" => "User failed to update."];
-            }
-        } else {
-            http_response_code(400);
-            $response = ["Message" => "Bad Request, Wrong URL"];
+            echo json_encode($response);
         }
-
-        echo json_encode($response);
-    }
-
-
-    public static function updateAllSeats()
-    {
-        global $conn;
-
-        $response = [];
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $data = json_decode(file_get_contents("php://input"), true);
-
-            $seat = Seat::update_all($conn, $data);
-            if (!$seat) {
-                http_response_code(404);
-                $response = ["Message" => "seats not found."];
-            } else {
-                http_response_code(200);
-                $response = ["Message" => "seats updated successfully."];
-            }
-        } else {
-            http_response_code(400);
-            $response = ["Message" => "Bad Request, Wrong URL"];
-        }
-
-        echo json_encode($response);
-    }
 
 
 

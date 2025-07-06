@@ -1,10 +1,10 @@
 <?php
 
-require(__DIR__ . "/../connection/connection.php");
+require(__DIR__ . "/BaseController.php");
 require(__DIR__ . "/../models/Booking.php");
 
 
-class BookingController
+class BookingController extends BaseController
 {
 
 

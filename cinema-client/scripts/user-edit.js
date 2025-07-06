@@ -7,11 +7,11 @@ if(!id){
 }
 
 async function getUser(){
-    const response = await axios.get(`http://localhost/cinema/cinema-server/controllers/get_users_api.php?id=${id}`, {
+    const response = await axios.get(`http://localhost/cinema/cinema-server/users?id=${id}`, {
         headers: { "Content-Type": "application/json" }
     });
 
-    user = response.data.user;
+    user = response.data.data;
 
         document.getElementById("welcome").innerHTML = `Welcome ${user.first_name}`;
 
@@ -40,14 +40,14 @@ form.addEventListener("submit", async (e)=>{
         password: form.elements["password"].value,
         }
 
-        const response = await axios.post(`http://localhost/cinema/cinema-server/controllers/update_user_api.php`, data , {
+        const response = await axios.post(`http://localhost/cinema/cinema-server/update_user`, data , {
         headers: { "Content-Type": "application/json" }
     })
-    alert(response.data.Message);
+    alert(response.data.message);
     window.location.href = "../pages/user-profile.html";
 
     if(response?.data?.user){
-        alert(response.data.Message);
+        alert(response.data.message);
     }
 
 })

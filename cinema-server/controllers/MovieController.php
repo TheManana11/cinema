@@ -1,9 +1,9 @@
 <?php
 
-require(__DIR__ . "/../connection/connection.php");
+require(__DIR__ . "/BaseController.php");
 require(__DIR__ . "/../models/Movie.php");
 
-class MovieController
+class MovieController extends BaseController
 {
 
     public static function addMovie()

@@ -24,7 +24,7 @@ $apis = [
 
 // seats controller
 '/seats'  => ['controller' => 'SeatController', 'method' => 'getSeats'],
-'/movie_shows'  => ['controller' => 'SeatController', 'method' => 'getMovieShows'],
+// '/movie_shows'  => ['controller' => 'SeatController', 'method' => 'getMovieShows'],
 '/add_seats'  => ['controller' => 'SeatController', 'method' => 'addAllSeats'],
 '/update_seat'  => ['controller' => 'SeatController', 'method' => 'updateSeat'],
 '/delete_seat'  => ['controller' => 'SeatController', 'method' => 'deleteSeat'],
